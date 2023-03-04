@@ -16,9 +16,9 @@ class CustomerController extends Controller
         return new CustomerCollection(Customer::paginate(10));
     }
 
-    public function show(Customer $customer, Request $request)
+    public function show(Customer $customer)
     {
-
+        $this->authorize('view', $customer);
 
         return new CustomerResource($customer);
     }
@@ -32,6 +32,8 @@ class CustomerController extends Controller
 
     public function update(StoreCustomerRequest $request, Customer $customer)
     {
+        $this->authorize('update', $customer);
+
         $customer->update($request->validated());
 
         return response()->json('customer updated');
@@ -39,6 +41,8 @@ class CustomerController extends Controller
 
     public function destroy(Customer $customer)
     {
+        $this->authorize('delete', $customer);
+
         $customer->delete();
 
         return response()->json("Customer deleted");
