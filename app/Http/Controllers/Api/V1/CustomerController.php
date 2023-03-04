@@ -18,7 +18,7 @@ class CustomerController extends Controller
 
     public function show(Customer $customer)
     {
-        $this->authorize('view', $customer);
+        //$this->authorize('view', $customer);
 
         return new CustomerResource($customer);
     }
@@ -32,7 +32,7 @@ class CustomerController extends Controller
 
     public function update(StoreCustomerRequest $request, Customer $customer)
     {
-        $this->authorize('update', $customer);
+        //$this->authorize('update', $customer);
 
         $customer->update($request->validated());
 
@@ -41,7 +41,7 @@ class CustomerController extends Controller
 
     public function destroy(Customer $customer)
     {
-        $this->authorize('delete', $customer);
+        //$this->authorize('delete', $customer);
 
         $customer->delete();
 
